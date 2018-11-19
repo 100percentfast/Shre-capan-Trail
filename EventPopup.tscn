@@ -1,0 +1,167 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://EventWindow.gd" type="Script" id=1]
+[ext_resource path="res://PressStart2P.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Choices.gd" type="Script" id=3]
+[ext_resource path="res://CrimsonText-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Choice_1.gd" type="Script" id=5]
+[ext_resource path="res://Choice_2.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 26
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="EventPopup" type="WindowDialog"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 700.0
+margin_bottom = 450.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = ""
+resizable = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Dialog", "Popup", "Rect" ]
+__meta__ = {
+"_edit_horizontal_guides_": [ 320.0 ],
+"_edit_vertical_guides_": [ 459.006, 237.005, 117.141, 700.025, 580.005, 350.054, 410.017 ]
+}
+
+[node name="EventText" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 213.0
+margin_right = 680.0
+margin_bottom = 310.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "eventText"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Choices" type="Node2D" parent="." index="2"]
+
+position = Vector2( 237, 320 )
+script = ExtResource( 3 )
+
+[node name="Choice_1" type="Button" parent="Choices" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 53.0
+margin_right = 173.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "button_1"
+flat = false
+align = 1
+script = ExtResource( 5 )
+_sections_unfolded = [ "Hint", "custom_fonts" ]
+
+[node name="Choice_2" type="Button" parent="Choices" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 222.0
+margin_top = 1.0
+margin_right = 342.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "button_2"
+flat = false
+align = 1
+script = ExtResource( 6 )
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="test" type="Button" parent="Choices" index="2"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -120.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "button_1"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[connection signal="event_picked" from="Choices" to="." method="_on_Choices_event_picked"]
+
+[connection signal="pressed" from="Choices/Choice_1" to="Choices" method="_on_Choice_1_pressed"]
+
+[connection signal="pressed" from="Choices/Choice_2" to="Choices" method="_on_Choice_2_pressed"]
+
+
