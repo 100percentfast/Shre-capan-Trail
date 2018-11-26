@@ -26,12 +26,12 @@ func define_choices(choice):
 # this func moves the buttons and/or hides them depending on amount
 func how_many_choices(choice):
 	if choice[3] != "none":
-		$Choice_1.rect_position = Vector2( -120, 0 )
+		$Choice_1.rect_position = Vector2( -120, 65 )
 		$Choice_2.disabled = false
 		$Choice_2.visible = true
 
 	else:
-		$Choice_1.rect_position = Vector2( 53, 0 )
+		$Choice_1.rect_position = Vector2( 53, 65 )
 		$Choice_2.disabled = true
 		$Choice_2.visible = false
 
@@ -57,7 +57,7 @@ func possible_choices(event):
 # CHOICE BUTTON LOGIC
 func _on_Choice_1_pressed():
 	if str(choiceTarget_1) != "none":
-		var content = get_node("/root/MainGame/Event/Events").get_content(choiceTarget_1)
+		var content = get_node("/root/Trails/Event/Events").get_content(choiceTarget_1)
 		emit_signal( "event_picked", content[0], content[1], choiceTarget_1 )
 			# uses $events.get_event_content to assemble event content
 			# it then sends _event_chosen signal, with the content array
@@ -69,7 +69,7 @@ func _on_Choice_1_pressed():
 
 func _on_Choice_2_pressed():
 	if str(choiceTarget_1) != "none":
-		var content = get_node("/root/MainGame/Event/Events").get_content(choiceTarget_2)
+		var content = get_node("/root/Trails/Event/Events").get_content(choiceTarget_2)
 			# function to retrieve event content from supplied event
 		emit_signal( "event_picked", content[0], content[1], choiceTarget_2 )
 			# once the content is arranged, it emits a signal with two arrays.
