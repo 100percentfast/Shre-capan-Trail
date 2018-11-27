@@ -1,22 +1,23 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Trails.gd" type="Script" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Event.gd" type="Script" id=3]
 [ext_resource path="res://Events.gd" type="Script" id=4]
 [ext_resource path="res://Events/EventStart.gd" type="Script" id=5]
-[ext_resource path="res://Option3.gd" type="Script" id=6]
+[ext_resource path="res://Events/Option3.gd" type="Script" id=6]
 [ext_resource path="res://Events/Event_1.gd" type="Script" id=7]
-[ext_resource path="res://Option1.gd" type="Script" id=8]
-[ext_resource path="res://Option2.gd" type="Script" id=9]
+[ext_resource path="res://Events/Option1.gd" type="Script" id=8]
+[ext_resource path="res://Events/Option2.gd" type="Script" id=9]
 [ext_resource path="res://Events/Event_2.gd" type="Script" id=10]
 [ext_resource path="res://Events/Event_3.gd" type="Script" id=11]
 [ext_resource path="res://Events/EventEnd.gd" type="Script" id=12]
 [ext_resource path="res://EventWindow.gd" type="Script" id=13]
 [ext_resource path="res://CrimsonText-Regular.ttf" type="DynamicFontData" id=14]
-[ext_resource path="res://Choices.gd" type="Script" id=15]
-[ext_resource path="res://Choice_1.gd" type="Script" id=16]
-[ext_resource path="res://Choice_2.gd" type="Script" id=17]
+[ext_resource path="res://GlobalAssets/EventArt/Placeholder.jpg" type="Texture" id=15]
+[ext_resource path="res://Choices.gd" type="Script" id=16]
+[ext_resource path="res://Choice_1.gd" type="Script" id=17]
+[ext_resource path="res://Choice_2.gd" type="Script" id=18]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -31,7 +32,7 @@ use_filter = false
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 
 size = 27
 use_mipmaps = false
@@ -122,8 +123,8 @@ script = ExtResource( 4 )
 
 script = ExtResource( 5 )
 eventLocation = 0
-eventText = "This is the start of the game. It's an \"Event\" too! \\n\\n We could use this to setup the start of a narrative, if we wanted to."
-eventArt = "StartArt"
+eventText = "This is the start of the game. It's an \"Event\" too! \\n \\n We could use this to setup the start of a narrative, if we wanted to."
+eventArt = "res://GlobalAssets/EventArt/StartArt.jpg"
 choice_1 = "Tell me more."
 choiceHT_1 = "I'm interested."
 choiceArg_1 = "none"
@@ -135,9 +136,9 @@ choiceArg_2 = "Choice 2 Arguments"
 
 script = ExtResource( 6 )
 eventLocation = 1
-eventText = "This is an offshoot of the \"Start\" event. If you had chosen \"back,\" the windows would have closed."
-eventArt = "Choice 1 Art"
-choice_1 = "Got it."
+eventText = "Choice 1 Text"
+eventArt = "none"
+choice_1 = "Back to Game!"
 choiceHT_1 = "Outta here."
 choiceArg_1 = "none"
 choice_2 = "none"
@@ -149,22 +150,22 @@ choiceArg_2 = "Choice 2 Arguments"
 script = ExtResource( 7 )
 eventLocation = 1
 eventText = "Suddenly, a wild Kai appears! She looks dumb.\\n\\nWhat do you do?"
-eventArt = "Kai.png"
+eventArt = "none"
 choice_1 = "GO LAY DOWN"
 choiceHT_1 = "GO TO YOUR PLACE"
 choiceArg_1 = "Choice 1 Arguments"
 choice_2 = "awww"
 choiceHT_2 = "What a cutie. I'm infatuated."
-choiceArg_2 = "Chowefgwefwgggwerwerg"
+choiceArg_2 = "Choice 2 Arguments"
 
 [node name="Option1" type="Node2D" parent="Event/Events/1" index="0"]
 
 script = ExtResource( 8 )
 eventLocation = 1
-eventText = "Choice 1 Text"
-eventArt = "Choice 1 Art"
-choice_1 = "Back to Game!"
-choiceHT_1 = "Outta here."
+eventText = "Aww. She's sad."
+eventArt = "res://GlobalAssets/EventArt/KaiSad.jpg"
+choice_1 = "Now I feel bad."
+choiceHT_1 = ":("
 choiceArg_1 = "none"
 choice_2 = "none"
 choiceHT_2 = "Choice 2 Tooltip"
@@ -174,9 +175,9 @@ choiceArg_2 = "Choice 2 Arguments"
 
 script = ExtResource( 9 )
 eventLocation = 1
-eventText = "Choice 1 Text"
-eventArt = "Choice 1 Art"
-choice_1 = "Back to Game!"
+eventText = "She might be a cutie, but man is she annoying."
+eventArt = "res://GlobalAssets/EventArt/KaiHappy.jpg"
+choice_1 = "Let's give her the slip."
 choiceHT_1 = "Outta here."
 choiceArg_1 = "none"
 choice_2 = "none"
@@ -264,18 +265,25 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "eventText"
+align = 3
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="Choices" type="Node2D" parent="Event/EventPopup" index="2"]
+[node name="EventArt" type="Sprite" parent="Event/EventPopup" index="2"]
+
+position = Vector2( 362.705, 133.508 )
+scale = Vector2( 0.439832, 0.388107 )
+texture = ExtResource( 15 )
+
+[node name="Choices" type="Node2D" parent="Event/EventPopup" index="3"]
 
 position = Vector2( 237, 320 )
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 
 [node name="Choice_1" type="Button" parent="Event/EventPopup/Choices" index="0"]
 
@@ -302,7 +310,7 @@ group = null
 text = "button_1"
 flat = false
 align = 1
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 _sections_unfolded = [ "Hint", "Rect", "custom_fonts" ]
 
 [node name="Choice_2" type="Button" parent="Event/EventPopup/Choices" index="1"]
@@ -330,7 +338,7 @@ group = null
 text = "button_2"
 flat = false
 align = 1
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="test" type="Button" parent="Event/EventPopup/Choices" index="2"]
