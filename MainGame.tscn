@@ -1,10 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://MainGame.gd" type="Script" id=1]
-[ext_resource path="res://Event.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Trails.gd" type="Script" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Event.gd" type="Script" id=3]
-[ext_resource path="res://EventPopup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Events.gd" type="Script" id=4]
+[ext_resource path="res://Events/EventStart.gd" type="Script" id=5]
+[ext_resource path="res://Option3.gd" type="Script" id=6]
+[ext_resource path="res://Events/Event_1.gd" type="Script" id=7]
+[ext_resource path="res://Option1.gd" type="Script" id=8]
+[ext_resource path="res://Option2.gd" type="Script" id=9]
+[ext_resource path="res://Events/Event_2.gd" type="Script" id=10]
+[ext_resource path="res://Events/Event_3.gd" type="Script" id=11]
+[ext_resource path="res://Events/EventEnd.gd" type="Script" id=12]
+[ext_resource path="res://EventWindow.gd" type="Script" id=13]
+[ext_resource path="res://CrimsonText-Regular.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://Choices.gd" type="Script" id=15]
+[ext_resource path="res://Choice_1.gd" type="Script" id=16]
+[ext_resource path="res://Choice_2.gd" type="Script" id=17]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -19,7 +31,23 @@ use_filter = false
 font_data = SubResource( 1 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="MainGame" type="Node2D" index="0"]
+[sub_resource type="DynamicFont" id=5]
+
+size = 27
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 14 )
+_sections_unfolded = [ "Font", "Resource", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 26
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 14 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Trails" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Rect", "Transform" ]
@@ -28,24 +56,7 @@ __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
 
-[node name="Event" parent="." index="0" instance=ExtResource( 2 )]
-
-position = Vector2( -12, -15 )
-script = ExtResource( 3 )
-
-[node name="2" parent="Event/Events" index="2"]
-
-eventArt = "Event2Art"
-
-[node name="3" parent="Event/Events" index="3"]
-
-eventArt = "Event3Art"
-
-[node name="EventPopup2" parent="Event" index="1"]
-
-visible = false
-
-[node name="BaseUI" type="Panel" parent="." index="1"]
+[node name="MainGame" type="Panel" parent="." index="0"]
 
 self_modulate = Color( 1, 0.876465, 0.3125, 1 )
 anchor_left = 0.0
@@ -64,7 +75,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Visibility" ]
 
-[node name="Button" type="Button" parent="BaseUI" index="0"]
+[node name="Button" type="Button" parent="MainGame" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -91,26 +102,274 @@ flat = false
 align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="EventPopup" parent="BaseUI/Button" index="0" instance=ExtResource( 4 )]
-
-visible = false
-margin_left = -206.0
-margin_top = -436.0
-margin_right = 494.0
-margin_bottom = 14.0
-
-[node name="Player" parent="." index="2" instance=ExtResource( 5 )]
+[node name="Player" type="Node2D" parent="." index="1"]
 
 position = Vector2( 509.325, 291.3 )
 scale = Vector2( 5.45928, 3.33479 )
+script = ExtResource( 2 )
+location = 0
+
+[node name="Event" type="Node2D" parent="." index="2"]
+
+position = Vector2( -12, -15 )
+script = ExtResource( 3 )
+
+[node name="Events" type="Node2D" parent="Event" index="0"]
+
+script = ExtResource( 4 )
+
+[node name="Start" type="Node2D" parent="Event/Events" index="0"]
+
+script = ExtResource( 5 )
+eventLocation = 0
+eventText = "This is the start of the game. It's an \"Event\" too! \\n\\n We could use this to setup the start of a narrative, if we wanted to."
+eventArt = "StartArt"
+choice_1 = "Tell me more."
+choiceHT_1 = "I'm interested."
+choiceArg_1 = "none"
+choice_2 = "Back"
+choiceHT_2 = "Go back to the blank screen."
+choiceArg_2 = "Choice 2 Arguments"
+
+[node name="Option3" type="Node2D" parent="Event/Events/Start" index="0"]
+
+script = ExtResource( 6 )
+eventLocation = 1
+eventText = "This is an offshoot of the \"Start\" event. If you had chosen \"back,\" the windows would have closed."
+eventArt = "Choice 1 Art"
+choice_1 = "Got it."
+choiceHT_1 = "Outta here."
+choiceArg_1 = "none"
+choice_2 = "none"
+choiceHT_2 = "Choice 2 Tooltip"
+choiceArg_2 = "Choice 2 Arguments"
+
+[node name="1" type="Node2D" parent="Event/Events" index="1"]
+
+script = ExtResource( 7 )
+eventLocation = 1
+eventText = "Suddenly, a wild Kai appears! She looks dumb.\\n\\nWhat do you do?"
+eventArt = "Kai.png"
+choice_1 = "GO LAY DOWN"
+choiceHT_1 = "GO TO YOUR PLACE"
+choiceArg_1 = "Choice 1 Arguments"
+choice_2 = "awww"
+choiceHT_2 = "What a cutie. I'm infatuated."
+choiceArg_2 = "Chowefgwefwgggwerwerg"
+
+[node name="Option1" type="Node2D" parent="Event/Events/1" index="0"]
+
+script = ExtResource( 8 )
+eventLocation = 1
+eventText = "Choice 1 Text"
+eventArt = "Choice 1 Art"
+choice_1 = "Back to Game!"
+choiceHT_1 = "Outta here."
+choiceArg_1 = "none"
+choice_2 = "none"
+choiceHT_2 = "Choice 2 Tooltip"
+choiceArg_2 = "Choice 2 Arguments"
+
+[node name="Option2" type="Node2D" parent="Event/Events/1" index="1"]
+
+script = ExtResource( 9 )
+eventLocation = 1
+eventText = "Choice 1 Text"
+eventArt = "Choice 1 Art"
+choice_1 = "Back to Game!"
+choiceHT_1 = "Outta here."
+choiceArg_1 = "none"
+choice_2 = "none"
+choiceHT_2 = "Choice 2 Tooltip"
+choiceArg_2 = "Choice 2 Arguments"
+
+[node name="2" type="Node2D" parent="Event/Events" index="2"]
+
+script = ExtResource( 10 )
+eventLocation = 2
+eventText = "Event2Text"
+eventArt = "Event2Art"
+choice_1 = "Button 1 Text"
+choiceHT_1 = "Choice 1 Tooltip"
+choiceArg_1 = "Choice 1 Arguments"
+choice_2 = "none"
+choiceHT_2 = "Choice 2 Tooltip"
+choiceArg_2 = "Choice 2 Arguments"
+
+[node name="3" type="Node2D" parent="Event/Events" index="3"]
+
+script = ExtResource( 11 )
+eventLocation = 3
+eventText = "Event3Text"
+eventArt = "Event3Art"
+choice_1 = "Button 1 Text"
+choiceHT_1 = "Choice 1 Tooltip"
+choiceArg_1 = "Choice 1 Arguments"
+choice_2 = "none"
+choiceHT_2 = "Choice 2 Tooltip"
+choiceArg_2 = "Choice 2 Arguments"
+
+[node name="End" type="Node2D" parent="Event/Events" index="4"]
+
+script = ExtResource( 12 )
+eventLocation = 4
+eventText = "EndText"
+eventArt = "EndArt"
+choice_1 = "Button 1 Text"
+choiceHT_1 = "Choice 1 Tooltip"
+choiceArg_1 = "Start"
+choice_2 = "Back"
+choiceHT_2 = "Choice 2 Tooltip"
+choiceArg_2 = "none"
+
+[node name="EventPopup" type="WindowDialog" parent="Event" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 102.0
+margin_top = 95.0
+margin_right = 802.0
+margin_bottom = 545.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = true
+window_title = ""
+resizable = false
+script = ExtResource( 13 )
+_sections_unfolded = [ "Dialog", "Popup", "Rect" ]
+__meta__ = {
+"_edit_horizontal_guides_": [ 320.0 ],
+"_edit_vertical_guides_": [ 459.006, 237.005, 117.141, 700.025, 580.005, 350.054, 410.017 ]
+}
+
+[node name="EventText" type="Label" parent="Event/EventPopup" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 272.0
+margin_right = 680.0
+margin_bottom = 369.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 5 )
+text = "eventText"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Choices" type="Node2D" parent="Event/EventPopup" index="2"]
+
+position = Vector2( 237, 320 )
+script = ExtResource( 15 )
+
+[node name="Choice_1" type="Button" parent="Event/EventPopup/Choices" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 53.0
+margin_top = 65.0
+margin_right = 173.0
+margin_bottom = 115.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "button_1"
+flat = false
+align = 1
+script = ExtResource( 16 )
+_sections_unfolded = [ "Hint", "Rect", "custom_fonts" ]
+
+[node name="Choice_2" type="Button" parent="Event/EventPopup/Choices" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 222.0
+margin_top = 65.0
+margin_right = 342.0
+margin_bottom = 115.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "button_2"
+flat = false
+align = 1
+script = ExtResource( 17 )
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="test" type="Button" parent="Event/EventPopup/Choices" index="2"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -120.0
+margin_top = 65.0
+margin_bottom = 115.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "button_1"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [connection signal="gameticked" from="." to="Event" method="_on_MainGame_gameticked"]
 
-[connection signal="event_picked" from="Event" to="BaseUI/Button/EventPopup" method="_on_Event_event_picked"]
+[connection signal="pressed" from="MainGame/Button" to="." method="_on_Button_pressed"]
 
-[connection signal="event_picked" from="Event/EventPopup2/Choices" to="Event" method="_on_Choices_event_picked"]
+[connection signal="event_picked" from="Event" to="Event/EventPopup" method="_on_Event_event_picked"]
 
-[connection signal="pressed" from="BaseUI/Button" to="." method="_on_Button_pressed"]
+[connection signal="event_picked" from="Event/EventPopup/Choices" to="Event/EventPopup" method="_on_Choices_event_picked"]
+
+[connection signal="pressed" from="Event/EventPopup/Choices/Choice_1" to="Event/EventPopup/Choices" method="_on_Choice_1_pressed"]
+
+[connection signal="pressed" from="Event/EventPopup/Choices/Choice_2" to="Event/EventPopup/Choices" method="_on_Choice_2_pressed"]
 
 
-[editable path="Event"]
