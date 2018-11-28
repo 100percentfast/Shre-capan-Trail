@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Trails.gd" type="Script" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -14,10 +14,12 @@
 [ext_resource path="res://Events/EventEnd.gd" type="Script" id=12]
 [ext_resource path="res://EventWindow.gd" type="Script" id=13]
 [ext_resource path="res://CrimsonText-Regular.ttf" type="DynamicFontData" id=14]
-[ext_resource path="res://GlobalAssets/EventArt/Placeholder.jpg" type="Texture" id=15]
-[ext_resource path="res://Choices.gd" type="Script" id=16]
-[ext_resource path="res://Choice_1.gd" type="Script" id=17]
-[ext_resource path="res://Choice_2.gd" type="Script" id=18]
+[ext_resource path="res://EventText.gd" type="Script" id=15]
+[ext_resource path="res://GlobalAssets/EventArt/Placeholder.jpg" type="Texture" id=16]
+[ext_resource path="res://EventArt.gd" type="Script" id=17]
+[ext_resource path="res://Choices.gd" type="Script" id=18]
+[ext_resource path="res://Choice_1.gd" type="Script" id=19]
+[ext_resource path="res://Choice_2.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -112,14 +114,19 @@ location = 0
 
 [node name="Event" type="Node2D" parent="." index="2"]
 
-position = Vector2( -12, -15 )
 script = ExtResource( 3 )
 
 [node name="Events" type="Node2D" parent="Event" index="0"]
 
 script = ExtResource( 4 )
 
-[node name="Start" type="Node2D" parent="Event/Events" index="0"]
+[node name="RandomEvents" type="Node2D" parent="Event/Events" index="0"]
+
+[node name="StaticEvents" type="Node2D" parent="Event/Events" index="1"]
+
+editor/display_folded = true
+
+[node name="Start" type="Node2D" parent="Event/Events/StaticEvents" index="0"]
 
 script = ExtResource( 5 )
 eventLocation = 0
@@ -132,7 +139,7 @@ choice_2 = "Back"
 choiceHT_2 = "Go back to the blank screen."
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="Option3" type="Node2D" parent="Event/Events/Start" index="0"]
+[node name="Option3" type="Node2D" parent="Event/Events/StaticEvents/Start" index="0"]
 
 script = ExtResource( 6 )
 eventLocation = 1
@@ -145,10 +152,10 @@ choice_2 = "none"
 choiceHT_2 = "Choice 2 Tooltip"
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="1" type="Node2D" parent="Event/Events" index="1"]
+[node name="1" type="Node2D" parent="Event/Events/StaticEvents" index="1"]
 
 script = ExtResource( 7 )
-eventLocation = 1
+eventLocation = 2
 eventText = "Suddenly, a wild Kai appears! She looks dumb.\\n\\nWhat do you do?"
 eventArt = "none"
 choice_1 = "GO LAY DOWN"
@@ -158,7 +165,7 @@ choice_2 = "awww"
 choiceHT_2 = "What a cutie. I'm infatuated."
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="Option1" type="Node2D" parent="Event/Events/1" index="0"]
+[node name="Option1" type="Node2D" parent="Event/Events/StaticEvents/1" index="0"]
 
 script = ExtResource( 8 )
 eventLocation = 1
@@ -171,7 +178,7 @@ choice_2 = "none"
 choiceHT_2 = "Choice 2 Tooltip"
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="Option2" type="Node2D" parent="Event/Events/1" index="1"]
+[node name="Option2" type="Node2D" parent="Event/Events/StaticEvents/1" index="1"]
 
 script = ExtResource( 9 )
 eventLocation = 1
@@ -184,10 +191,10 @@ choice_2 = "none"
 choiceHT_2 = "Choice 2 Tooltip"
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="2" type="Node2D" parent="Event/Events" index="2"]
+[node name="2" type="Node2D" parent="Event/Events/StaticEvents" index="2"]
 
 script = ExtResource( 10 )
-eventLocation = 2
+eventLocation = 4
 eventText = "Event2Text"
 eventArt = "Event2Art"
 choice_1 = "Button 1 Text"
@@ -197,10 +204,10 @@ choice_2 = "none"
 choiceHT_2 = "Choice 2 Tooltip"
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="3" type="Node2D" parent="Event/Events" index="3"]
+[node name="3" type="Node2D" parent="Event/Events/StaticEvents" index="3"]
 
 script = ExtResource( 11 )
-eventLocation = 3
+eventLocation = 6
 eventText = "Event3Text"
 eventArt = "Event3Art"
 choice_1 = "Button 1 Text"
@@ -210,10 +217,10 @@ choice_2 = "none"
 choiceHT_2 = "Choice 2 Tooltip"
 choiceArg_2 = "Choice 2 Arguments"
 
-[node name="End" type="Node2D" parent="Event/Events" index="4"]
+[node name="End" type="Node2D" parent="Event/Events/StaticEvents" index="4"]
 
 script = ExtResource( 12 )
-eventLocation = 4
+eventLocation = 8
 eventText = "EndText"
 eventArt = "EndArt"
 choice_1 = "Button 1 Text"
@@ -272,6 +279,7 @@ autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script = ExtResource( 15 )
 _sections_unfolded = [ "custom_fonts" ]
 
 [node name="EventArt" type="TextureRect" parent="Event/EventPopup" index="2"]
@@ -290,14 +298,15 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 expand = true
+script = ExtResource( 17 )
 _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="Choices" type="Node2D" parent="Event/EventPopup" index="3"]
 
 position = Vector2( 237, 320 )
-script = ExtResource( 16 )
+script = ExtResource( 18 )
 
 [node name="Choice_1" type="Button" parent="Event/EventPopup/Choices" index="0"]
 
@@ -324,7 +333,7 @@ group = null
 text = "button_1"
 flat = false
 align = 1
-script = ExtResource( 17 )
+script = ExtResource( 19 )
 _sections_unfolded = [ "Hint", "Rect", "custom_fonts" ]
 
 [node name="Choice_2" type="Button" parent="Event/EventPopup/Choices" index="1"]
@@ -352,7 +361,7 @@ group = null
 text = "button_2"
 flat = false
 align = 1
-script = ExtResource( 18 )
+script = ExtResource( 20 )
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="test" type="Button" parent="Event/EventPopup/Choices" index="2"]
