@@ -23,8 +23,10 @@ func event_check(playerLocation):
 			break
 			
 	if !flag:
-				emit_signal("event_picked", "none", "none", "none")
-					# catch-all: if there's no event matching playerLocation, it emits a signal with "none" as arguments.
+		emit_signal("event_picked", false, "res://GlobalAssets/EventArt/Placeholder.jpg", "none")
+			# catch-all: if there's no event matching playerLocation, it emits a signal with "none" as arguments.
+		return false
+
 	else:
 		 flag = false
 
