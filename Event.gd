@@ -11,7 +11,7 @@ func event_check(playerLocation):
 	
 	var flag
 
-	for event in get_node("Events").get_children():    # iterative loop, checks playerLocation against each event's
+	for event in get_node("Events/StaticEvents").get_children():    # iterative loop, checks playerLocation against each event's
 		if playerLocation == event.eventLocation:      # eventLocation to look for a match.
 			flag = true
 				# necessary for catch-all below
