@@ -4,10 +4,11 @@ signal event_picked
 
 
 func _on_MainGame_gameticked(playerLocation):
-	event_check(playerLocation)
+	if !static_event(playerLocation):
+		random_event()
 
 
-func event_check(playerLocation):
+func static_event(playerLocation):
 	
 	var flag
 
@@ -31,4 +32,5 @@ func event_check(playerLocation):
 		 flag = false
 
 
-
+func random_event():
+	pass
