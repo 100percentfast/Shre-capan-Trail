@@ -7,14 +7,32 @@ signal event_picked
 	# When picking a 'card', it is important to exclude element 0.
 var deck = [ "placeholder" ]
 
+
 func _ready():
+	randomize()
 	load_deck()
+
 
 # Function used when drawing a random event from the deck.
 func _draw_event():
+	randomize()
+	if to_event_or_not_to_event_that_is_the_question():
+		pick_event()
+
+
+func to_event_or_not_to_event_that_is_the_question():
+	var chance = randi()%11+1
+	if chance > 5:
+		return true
+	else:
+		return false
+
+
+func pick_event():
 	var drawn = deck[randi()% len(deck)]
 	var content = get_node("/root/Trails/Event/Events").get_content(drawn)
 	emit_signal( "event_picked", content[0], content[1], drawn )
+
 
 # Initialization of deck. Draws 'weight' from RandomEvent scripts,
 	# then adds a number of 'cards' to the deck == weight.
