@@ -18,3 +18,7 @@ func _on_Event_event_picked(event, choice, location):
 func _on_Choices_event_picked(event, choice, location):
 	_on_Event_event_picked(event, choice, location)
 		# passthrough from player choice. Changes events.
+
+func _on_RandomEvents_event_picked(event, choice, location):
+	_on_Event_event_picked(event, choice, location)
+		# passthrough from RandomEvent handler.

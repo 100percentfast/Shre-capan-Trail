@@ -3,7 +3,7 @@ extends Node
 # RANDOM WEIGHTING
 # The heigher this number, the more often it will appear when
 # a random event is called.
-export var randomWeight = 100
+export var weight = 100
 
 # CONTENT VARIABLES
 export var eventText = "Event1Text"

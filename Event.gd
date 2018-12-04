@@ -5,7 +5,7 @@ signal event_picked
 
 func _on_MainGame_gameticked(playerLocation):
 	if !static_event(playerLocation):
-		$Events/RandomEvents.random_event()
+		$Events/RandomEvents._draw_event()
 
 
 func static_event(playerLocation):
@@ -22,11 +22,12 @@ func static_event(playerLocation):
 				# once the content is arranged, it emits a signal with two arrays.
 				# Content[0] is story text & art. Content [1] is choice content.
 			break
-			
+
 	if !flag:
 		emit_signal("event_picked", false, "res://GlobalAssets/EventArt/Placeholder.jpg", "none")
 			# catch-all: if there's no event matching playerLocation, it emits a signal with "none" as arguments.
 		return false
 
 	else:
-		 flag = false
+		flag = false
+		return true

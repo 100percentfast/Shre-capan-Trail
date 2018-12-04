@@ -129,7 +129,7 @@ script = ExtResource( 5 )
 [node name="RandomEvent_1" type="Node" parent="Event/Events/RandomEvents" index="0"]
 
 script = ExtResource( 6 )
-randomWeight = 10
+weight = 10
 eventText = "YO DAWG I'M A RANDOM EVENT I COME UP WITHOUT WARNING I'M SO SPONTANEOUS HAHA"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
 choice_1 = "ok bud"
@@ -142,7 +142,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 [node name="RandomEvent_2" type="Node" parent="Event/Events/RandomEvents" index="1"]
 
 script = ExtResource( 6 )
-randomWeight = 2
+weight = 2
 eventText = "YO DAWG I'M sorta rare"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
 choice_1 = "ok bud"
@@ -155,7 +155,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 [node name="RandomEvent_3" type="Node" parent="Event/Events/RandomEvents" index="2"]
 
 script = ExtResource( 6 )
-randomWeight = 1
+weight = 1
 eventText = "YO DAWG I'M REALLY FUCKING RARE OK"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
 choice_1 = "ok bud"
@@ -168,7 +168,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 [node name="RandomEvent_4" type="Node" parent="Event/Events/RandomEvents" index="3"]
 
 script = ExtResource( 6 )
-randomWeight = 8
+weight = 5
 eventText = "hello I'm random how u"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
 choice_1 = "ok bud"
@@ -181,7 +181,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 [node name="RandomEvent_5" type="Node" parent="Event/Events/RandomEvents" index="4"]
 
 script = ExtResource( 6 )
-randomWeight = 5
+weight = 5
 eventText = "good morning"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
 choice_1 = "ok bud"
@@ -299,6 +299,7 @@ choiceArg_2 = "none"
 
 [node name="EventPopup" type="WindowDialog" parent="Event" index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -367,6 +368,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 18 )
 expand = true
+stretch_mode = 0
 script = ExtResource( 19 )
 _sections_unfolded = [ "Offset", "Region" ]
 
@@ -463,6 +465,8 @@ _sections_unfolded = [ "Rect", "custom_fonts" ]
 [connection signal="pressed" from="MainGame/Button" to="." method="_on_Button_pressed"]
 
 [connection signal="event_picked" from="Event" to="Event/EventPopup" method="_on_Event_event_picked"]
+
+[connection signal="event_picked" from="Event/Events/RandomEvents" to="Event/EventPopup" method="_on_RandomEvents_event_picked"]
 
 [connection signal="event_picked" from="Event/EventPopup/Choices" to="Event/EventPopup" method="_on_Choices_event_picked"]
 
