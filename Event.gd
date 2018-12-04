@@ -5,7 +5,7 @@ signal event_picked
 
 func _on_MainGame_gameticked(playerLocation):
 	if !static_event(playerLocation):
-		random_event()
+		$Events/RandomEvents.random_event()
 
 
 func static_event(playerLocation):
@@ -30,7 +30,3 @@ func static_event(playerLocation):
 
 	else:
 		 flag = false
-
-
-func random_event():
-	pass
