@@ -4,14 +4,15 @@ signal event_picked
 
 
 func _on_MainGame_gameticked(playerLocation):
-	event_check(playerLocation)
+	if !static_event(playerLocation):
+		$Events/RandomEvents._draw_event()
 
 
-func event_check(playerLocation):
+func static_event(playerLocation):
 	
 	var flag
 
-	for event in get_node("Events").get_children():    # iterative loop, checks playerLocation against each event's
+	for event in get_node("Events/StaticEvents").get_children():    # iterative loop, checks playerLocation against each event's
 		if playerLocation == event.eventLocation:      # eventLocation to look for a match.
 			flag = true
 				# necessary for catch-all below
@@ -21,12 +22,12 @@ func event_check(playerLocation):
 				# once the content is arranged, it emits a signal with two arrays.
 				# Content[0] is story text & art. Content [1] is choice content.
 			break
-			
+
 	if !flag:
-				emit_signal("event_picked", "none", "none", "none")
-					# catch-all: if there's no event matching playerLocation, it emits a signal with "none" as arguments.
+		emit_signal("event_picked", false, "res://GlobalAssets/EventArt/Placeholder.jpg", "none")
+			# catch-all: if there's no event matching playerLocation, it emits a signal with "none" as arguments.
+		return false
+
 	else:
-		 flag = false
-
-
-
+		flag = false
+		return true
