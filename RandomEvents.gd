@@ -16,3 +16,15 @@ func load_deck():
 	for event in get_children():
 		var cardAmount = event.weight
 		deck += cardAmount * [event]
+
+
+#                      (unimplemented) 
+# Functions to add/remove cards from current deck at runtime.
+	# eventName = ID of RandEv to add/remove from deck
+	# amount = amount of instances to add/remove from deck
+func _remove_card(eventName, amount):
+	pass
+
+
+func _add_card():
+	pass
