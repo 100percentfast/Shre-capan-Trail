@@ -10,14 +10,8 @@ export (int) var location
 
 
 func _ready():
-	if location != -1:
-		location = -1
-		# hardcoded starting location.
+	pass
 
-
-#func _process(delta):
-#	# this function updates based on framerate. Might use this for
-#	# resource decay, but will most likely drive gametick() from FPS
-#	# and set resource decay to call on _gameticked.
-#	pass
-
+func _input(event):
+    if event.is_action_pressed('click'):
+        $PlayerRoute.destination_set(get_global_mouse_position())
