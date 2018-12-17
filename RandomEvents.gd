@@ -30,6 +30,8 @@ func to_event_or_not_to_event_that_is_the_question():
 
 func pick_event():
 	var drawn = deck[randi()% len(deck)]
+	while str(drawn) == "placeholder":
+		drawn = deck[randi()% len(deck)]
 	var content = get_node("/root/Trails/Event/Events").get_content(drawn)
 	emit_signal( "event_picked", content[0], content[1], drawn )
 
