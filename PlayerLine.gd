@@ -12,7 +12,7 @@ func _ready():
 
 
 func destination_set(destination):
-	position = (get_node("..").position / destination)
+	position = (Vector2( 0, 0 ) - $"..".position)
 	set_point_position(0, get_node("..").position)
 	set_point_position(1, destination)
 	print(points)
