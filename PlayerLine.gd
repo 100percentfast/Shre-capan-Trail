@@ -10,9 +10,11 @@ func _ready():
 #	visible = false
 	print(points)
 
+func _update():
+	pass
 
-func destination_set(destination):
-	position = (Vector2( 0, 0 ) - $"..".position)
-	set_point_position(0, get_node("..").position)
-	set_point_position(1, destination)
+func _player_destination_set(destination):
+	position = (Vector2( 0, 0 ) - Vector2($"..".position))
+	set_point_position( 0, get_node("../Player").position)
+	set_point_position( 1, destination)
 	print(points)
