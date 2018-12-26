@@ -6,7 +6,7 @@ extends Node2D
 # when playerLocation == eventLocation, the
 # event goes off.
 export var eventLocation = 2
-
+# will soon be depreciated along with the MapScreen button
 
 # CONTENT VARIABLES
 export var eventText = "Event2Text"

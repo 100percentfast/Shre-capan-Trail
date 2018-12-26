@@ -38,7 +38,7 @@ func how_many_choices(choice):
 		$Choice_2.disabled = true
 		$Choice_2.visible = false
 
-# determines locations for each event, based on eventArg
+# determines locations for each event, based on eventArgs
 func possible_choices(event):
 	var location = get_path_to(event)
 	var eventPaths = get_node(location).get_children()
