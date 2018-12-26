@@ -14,10 +14,12 @@ var velocity = Vector2()
 
 func _input(event):
 	if event.is_action_pressed('click'):
-		$"../MapScreen/Route".destination_set(get_global_mouse_position())
+		$"../MapScreen/Route"._player_destination_set(get_global_mouse_position())
 		target = get_global_mouse_position()
 
 func _physics_process(delta):
 	velocity = (target - position).normalized() * speed
 	if (target-position).length() > 5:
 		move_and_slide(velocity)
+		
+		

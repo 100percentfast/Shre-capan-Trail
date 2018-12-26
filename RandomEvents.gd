@@ -58,3 +58,7 @@ func _remove_card(eventName, amount):
 
 func _add_card():
 	pass
+
+
+func _on_PlayerEventLogic__draw_event():
+	_draw_event()

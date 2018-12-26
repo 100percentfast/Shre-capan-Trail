@@ -15,6 +15,8 @@ func _update():
 
 func _player_destination_set(destination):
 	position = (Vector2( 0, 0 ) - Vector2($"..".position))
-	set_point_position( 0, get_node("../Player").position)
+	set_point_position( 0, get_node("../../Player").position)
 	set_point_position( 1, destination)
-	print(points)
+	#print(points)
+	print($"../../Player/PlayerEventLogic".oldPos)
+	print($"../../Player/PlayerEventLogic".currentPos)

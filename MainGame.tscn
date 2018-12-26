@@ -1,34 +1,35 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Trails.gd" type="Script" id=1]
 [ext_resource path="res://GlobalAssets/PlayerArt/MapScreen.png" type="Texture" id=2]
 [ext_resource path="res://MapScreen.gd" type="Script" id=3]
 [ext_resource path="res://PlayerLine.gd" type="Script" id=4]
 [ext_resource path="res://Player.gd" type="Script" id=5]
-[ext_resource path="res://GlobalAssets/PlayerArt/PlayerSprite.png" type="Texture" id=6]
-[ext_resource path="res://PlayerEventLogic.gd" type="Script" id=7]
-[ext_resource path="res://PlayerCamera.gd" type="Script" id=8]
-[ext_resource path="res://Event.gd" type="Script" id=9]
-[ext_resource path="res://Events.gd" type="Script" id=10]
-[ext_resource path="res://RandomEvents.gd" type="Script" id=11]
-[ext_resource path="res://RandomEvent_1.gd" type="Script" id=12]
-[ext_resource path="res://GlobalAssets/PlayerArt/PlaceSprite.png" type="Texture" id=13]
-[ext_resource path="res://Events/EventStart.gd" type="Script" id=14]
-[ext_resource path="res://Events/Option3.gd" type="Script" id=15]
-[ext_resource path="res://Events/Event_1.gd" type="Script" id=16]
-[ext_resource path="res://Events/Option1.gd" type="Script" id=17]
-[ext_resource path="res://Events/Option2.gd" type="Script" id=18]
-[ext_resource path="res://Events/Event_2.gd" type="Script" id=19]
-[ext_resource path="res://Events/Event_3.gd" type="Script" id=20]
-[ext_resource path="res://Events/EventEnd.gd" type="Script" id=21]
-[ext_resource path="res://EventWindow.gd" type="Script" id=22]
-[ext_resource path="res://CrimsonText-Regular.ttf" type="DynamicFontData" id=23]
-[ext_resource path="res://EventText.gd" type="Script" id=24]
-[ext_resource path="res://GlobalAssets/EventArt/Placeholder.jpg" type="Texture" id=25]
-[ext_resource path="res://EventArt.gd" type="Script" id=26]
-[ext_resource path="res://Choices.gd" type="Script" id=27]
-[ext_resource path="res://Choice_1.gd" type="Script" id=28]
-[ext_resource path="res://Choice_2.gd" type="Script" id=29]
+[ext_resource path="res://MapSettings.gd" type="Script" id=6]
+[ext_resource path="res://GlobalAssets/PlayerArt/PlayerSprite.png" type="Texture" id=7]
+[ext_resource path="res://PlayerEventLogic.gd" type="Script" id=8]
+[ext_resource path="res://PlayerCamera.gd" type="Script" id=9]
+[ext_resource path="res://Event.gd" type="Script" id=10]
+[ext_resource path="res://Events.gd" type="Script" id=11]
+[ext_resource path="res://RandomEvents.gd" type="Script" id=12]
+[ext_resource path="res://RandomEvent_1.gd" type="Script" id=13]
+[ext_resource path="res://GlobalAssets/PlayerArt/PlaceSprite.png" type="Texture" id=14]
+[ext_resource path="res://Events/EventStart.gd" type="Script" id=15]
+[ext_resource path="res://Events/Option3.gd" type="Script" id=16]
+[ext_resource path="res://Events/Event_1.gd" type="Script" id=17]
+[ext_resource path="res://Events/Option1.gd" type="Script" id=18]
+[ext_resource path="res://Events/Option2.gd" type="Script" id=19]
+[ext_resource path="res://Events/Event_2.gd" type="Script" id=20]
+[ext_resource path="res://Events/Event_3.gd" type="Script" id=21]
+[ext_resource path="res://Events/EventEnd.gd" type="Script" id=22]
+[ext_resource path="res://EventWindow.gd" type="Script" id=23]
+[ext_resource path="res://CrimsonText-Regular.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://EventText.gd" type="Script" id=25]
+[ext_resource path="res://GlobalAssets/EventArt/Placeholder.jpg" type="Texture" id=26]
+[ext_resource path="res://EventArt.gd" type="Script" id=27]
+[ext_resource path="res://Choices.gd" type="Script" id=28]
+[ext_resource path="res://Choice_1.gd" type="Script" id=29]
+[ext_resource path="res://Choice_2.gd" type="Script" id=30]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -53,7 +54,7 @@ radius = 10.0
 size = 27
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 23 )
+font_data = ExtResource( 24 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
 
 [sub_resource type="DynamicFont" id=4]
@@ -61,7 +62,7 @@ _sections_unfolded = [ "Font", "Resource", "Settings" ]
 size = 26
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 23 )
+font_data = ExtResource( 24 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Trails" type="Node2D" index="0"]
@@ -126,19 +127,25 @@ _sections_unfolded = [ "Offset", "Transform" ]
 location = 0
 speed = 200
 
-[node name="Sprite" type="Sprite" parent="Player" index="0"]
+[node name="Preferences" type="Node" parent="Player" index="0"]
 
-texture = ExtResource( 6 )
+script = ExtResource( 6 )
+RandomEventFrequency = 100
+GameSpeed = 100
 
-[node name="PlayerEventLogic" type="CollisionShape2D" parent="Player" index="1"]
+[node name="Sprite" type="Sprite" parent="Player" index="1"]
+
+texture = ExtResource( 7 )
+
+[node name="PlayerEventLogic" type="CollisionShape2D" parent="Player" index="2"]
 
 visible = false
 scale = Vector2( 18.3025, 18.3025 )
 shape = SubResource( 5 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="PlayerCamera" type="Camera2D" parent="Player" index="2"]
+[node name="PlayerCamera" type="Camera2D" parent="Player" index="3"]
 
 anchor_mode = 1
 rotating = false
@@ -162,24 +169,24 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 [node name="Event" type="Node2D" parent="." index="2"]
 
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Events" type="Node2D" parent="Event" index="0"]
 
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="RandomEvents" type="Node2D" parent="Event/Events" index="0"]
 
 editor/display_folded = true
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="RandomEvent_1" type="Node" parent="Event/Events/RandomEvents" index="0"]
 
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 weight = 10
 eventText = "YO DAWG I'M A RANDOM EVENT I COME UP WITHOUT WARNING I'M SO SPONTANEOUS HAHA"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
@@ -192,7 +199,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 
 [node name="RandomEvent_2" type="Node" parent="Event/Events/RandomEvents" index="1"]
 
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 weight = 2
 eventText = "YO DAWG I'M sorta rare"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
@@ -205,7 +212,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 
 [node name="RandomEvent_3" type="Node" parent="Event/Events/RandomEvents" index="2"]
 
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 weight = 1
 eventText = "YO DAWG I'M REALLY FUCKING RARE OK"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
@@ -218,7 +225,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 
 [node name="RandomEvent_4" type="Node" parent="Event/Events/RandomEvents" index="3"]
 
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 weight = 5
 eventText = "hello I'm random how u"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
@@ -231,7 +238,7 @@ choiceArg_2 = "Chowefgwefwgggwerwerg"
 
 [node name="RandomEvent_5" type="Node" parent="Event/Events/RandomEvents" index="4"]
 
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 weight = 5
 eventText = "good morning"
 eventArt = "res://GlobalAssets/EventArt/rANDOM.jpg"
@@ -249,8 +256,8 @@ position = Vector2( 0, -2 )
 [node name="Start" type="Sprite" parent="Event/Events/StaticEvents" index="0"]
 
 position = Vector2( 249.626, 341.019 )
-texture = ExtResource( 13 )
-script = ExtResource( 14 )
+texture = ExtResource( 14 )
+script = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 0
 eventText = "This is the start of the game. It's an \"Event\" too! \\n \\n We could use this to setup the start of a narrative, if we wanted to."
@@ -265,7 +272,7 @@ choiceArg_2 = "Choice 2 Arguments"
 [node name="Option3" type="Node2D" parent="Event/Events/StaticEvents/Start" index="0"]
 
 position = Vector2( -1.39838, -0.749879 )
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 1
 eventText = "Choice 1 Text"
@@ -281,7 +288,7 @@ choiceArg_2 = "Choice 2 Arguments"
 
 position = Vector2( 732.631, 88.4209 )
 scale = Vector2( 100, 100 )
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 2
 eventText = "Suddenly, a wild Kai appears! She looks dumb.\\n\\nWhat do you do?"
@@ -296,7 +303,7 @@ choiceArg_2 = "Choice 2 Arguments"
 [node name="Option1" type="Node2D" parent="Event/Events/StaticEvents/1" index="0"]
 
 scale = Vector2( 1e-005, 1e-005 )
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 1
 eventText = "Aww. She's sad."
@@ -312,7 +319,7 @@ choiceArg_2 = "Choice 2 Arguments"
 
 position = Vector2( 0.507246, -0.492753 )
 scale = Vector2( 1e-005, 1e-005 )
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 1
 eventText = "She might be a cutie, but man is she annoying."
@@ -328,7 +335,7 @@ choiceArg_2 = "Choice 2 Arguments"
 
 position = Vector2( 433.887, 110.262 )
 scale = Vector2( 100, 100 )
-script = ExtResource( 19 )
+script = ExtResource( 20 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 4
 eventText = "Event2Text"
@@ -344,7 +351,7 @@ choiceArg_2 = "Choice 2 Arguments"
 
 position = Vector2( 262.057, 206.238 )
 scale = Vector2( 100, 100 )
-script = ExtResource( 20 )
+script = ExtResource( 21 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 6
 eventText = "Event3Text"
@@ -360,7 +367,7 @@ choiceArg_2 = "Choice 2 Arguments"
 
 position = Vector2( 398.679, 347.368 )
 scale = Vector2( 100, 100 )
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 _sections_unfolded = [ "Transform" ]
 eventLocation = 8
 eventText = "EndText"
@@ -392,7 +399,7 @@ size_flags_vertical = 1
 popup_exclusive = true
 window_title = ""
 resizable = false
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 _sections_unfolded = [ "Dialog", "Popup", "Rect" ]
 __meta__ = {
 "_edit_horizontal_guides_": [ 320.0 ],
@@ -422,7 +429,7 @@ autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 24 )
+script = ExtResource( 25 )
 _sections_unfolded = [ "custom_fonts" ]
 
 [node name="EventArt" type="TextureRect" parent="Event/EventPopup" index="2"]
@@ -441,16 +448,16 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 expand = true
 stretch_mode = 0
-script = ExtResource( 26 )
+script = ExtResource( 27 )
 _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="Choices" type="Node2D" parent="Event/EventPopup" index="3"]
 
 position = Vector2( 237, 320 )
-script = ExtResource( 27 )
+script = ExtResource( 28 )
 
 [node name="Choice_1" type="Button" parent="Event/EventPopup/Choices" index="0"]
 
@@ -477,7 +484,7 @@ group = null
 text = "button_1"
 flat = false
 align = 1
-script = ExtResource( 28 )
+script = ExtResource( 29 )
 _sections_unfolded = [ "Hint", "Rect", "custom_fonts" ]
 
 [node name="Choice_2" type="Button" parent="Event/EventPopup/Choices" index="1"]
@@ -505,7 +512,7 @@ group = null
 text = "button_2"
 flat = false
 align = 1
-script = ExtResource( 29 )
+script = ExtResource( 30 )
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="test" type="Button" parent="Event/EventPopup/Choices" index="2"]
@@ -538,6 +545,8 @@ _sections_unfolded = [ "Rect", "custom_fonts" ]
 [connection signal="gameticked" from="." to="Event" method="_on_MainGame_gameticked"]
 
 [connection signal="pressed" from="MapScreen/Button" to="." method="_on_Button_pressed"]
+
+[connection signal="_draw_event" from="Player/PlayerEventLogic" to="Event/Events/RandomEvents" method="_on_PlayerEventLogic__draw_event"]
 
 [connection signal="event_picked" from="Event" to="Event/EventPopup" method="_on_Event_event_picked"]
 
